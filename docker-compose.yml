@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./Backend
+    container_name: staff-backend54
+    ports:
+      - "3024:3024"
+    depends_on:
+      - postgres
+    environment:
+      - PGUSER=postgres
+      - PGPASSWORD=admin123
+      - PGHOST=postgres
+      - PGPORT=5432
+      - PGDATABASE=staff_management
+    volumes:
+      - ./Backend:/app
+
+  hr-staff:
+    build: ./HR-staff
+    container_name: staff-hr54
+    ports:
+      - "8043:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:13
+    container_name: staff-db54
+    ports:
+      - "5419:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=staff_management
+    volumes:
+      - pgdata54:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata54:
+
