@@ -21,7 +21,7 @@ services:
     build: ./HR-staff
     container_name: staff-hr54
     ports:
-      - "8009:80"
+      - "8010:80"
     depends_on:
       - backend
 
