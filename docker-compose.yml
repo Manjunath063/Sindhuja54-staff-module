@@ -19,7 +19,7 @@ services:
 
   hr-staff:
     build: ./HR-staff
-    container_name: staff-hr54
+    container_name: staff-hr541
     ports:
       - "8010:80"
     depends_on:
